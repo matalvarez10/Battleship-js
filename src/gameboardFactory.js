@@ -25,16 +25,36 @@ export const gameboard = (nombre) => {
     let index = parseInt(this.getAttribute("data-number"));
     let i = Math.floor(index / 10);
     let j = index % 10;
+    let suma = 1;
+    let limit = j + currentShip;
+    if(!rotateSwitch){
+      suma = 10;
+      limit = index + (currentShip*suma);
+    }
 /*     if (checkBoard(index) === true) { */
-      for (let y = j; y < j + currentShip; y++) {
-        mainBoard[i][y] = "x";
-        if (i == 0) {
-          let auxSquare = document.querySelector(`[data-number="${y}"]`);
-          auxSquare.style.backgroundColor = "black";
-        } else {
-          let auxSquare = document.querySelector(`[data-number="${i}${y}"]`);
-          auxSquare.style.backgroundColor = "black";
+      for (let y = rotateSwitch ? j : index ; y < limit ; y=y + suma) {
+        if(rotateSwitch){
+          mainBoard[i][y] = "x";
+          if (i == 0) {
+            let auxSquare = document.querySelector(`[data-number="${y}"]`);
+            auxSquare.style.backgroundColor = "black";
+          } else {
+            let auxSquare = document.querySelector(`[data-number="${i}${y}"]`);
+            auxSquare.style.backgroundColor = "black";
+          }
         }
+        else{
+          mainBoard[Math.floor(y / 10)][j] = "x";
+          if (Math.floor(y / 10) == 0) {
+            let auxSquare = document.querySelector(`[data-number="${j}"]`);
+            auxSquare.style.backgroundColor = "black";
+          } else {
+            let auxSquare = document.querySelector(`[data-number="${Math.floor(y / 10)}${j}"]`);
+            auxSquare.style.backgroundColor = "black";
+          }
+          
+        }
+
       }
 /*     } */
     console.log(mainBoard);

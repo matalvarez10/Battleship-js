@@ -11,7 +11,6 @@ export function shipHover() {
     suma = 10;
     limit = parseInt(tmpLength)+(currentShip*suma);
   }
-  console.log(limit);
   for (let i = parseInt(tmpLength); i < limit; i=i+suma) { 
     let x = Math.floor(i / 10);
     let y = i % 10;
