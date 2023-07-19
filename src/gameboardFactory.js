@@ -1,6 +1,8 @@
 import { shipHover, shipLeave } from "./helperFunctions";
 import { rotateSwitch } from ".";
+import { allShips } from ".";
 export const currentShip = 5;
+export let shipsPlaced = 0;
 
 
 export const gameboard = (nombre) => {
@@ -32,6 +34,7 @@ export const gameboard = (nombre) => {
       limit = index + (currentShip*suma);
     }
     if (checkBoard(index) === true) {
+      shipsPlaced++;
       for (let y = rotateSwitch ? j : index ; y < limit ; y=y + suma) {
         if(rotateSwitch){
           mainBoard[i][y] = "x";
@@ -57,6 +60,7 @@ export const gameboard = (nombre) => {
 
       }
     }
+    console.log("shipsCounter",shipsPlaced);
     console.log(mainBoard);
   }
   function checkBoard(index) {
@@ -67,9 +71,7 @@ export const gameboard = (nombre) => {
     }
     for (let y = i - 1; y <= i + 1; y++) {
       if (y < 0 || y > 9) continue;
-      console.log("_____________________");
       for (let k = j - 1; k < j + currentShip + 1; k++) {
-        console.log(y,k)
         if (j + currentShip > 10) {
           return false;
         }
