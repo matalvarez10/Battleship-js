@@ -1,20 +1,22 @@
 import { gameboard1 } from ".";
-import { currentShip } from "./gameboardFactory";
+/* import { allShips[shipsPlaced].getLenght() } from "./gameboardFactory"; */
 import { rotateSwitch } from ".";
+import { shipsPlaced } from "./gameboardFactory";
+import { allShips } from ".";
 
 export function shipHover() {
   let tmpLength = this.getAttribute("data-number");
   let auxBoard = gameboard1.getBoard();
   let suma = 1;
-  let limit = parseInt(tmpLength) + currentShip;
+  let limit = parseInt(tmpLength) + allShips[shipsPlaced].getLenght();
   if(!rotateSwitch){
     suma = 10;
-    limit = parseInt(tmpLength)+(currentShip*suma);
+    limit = parseInt(tmpLength)+(allShips[shipsPlaced].getLenght()*suma);
   }
   for (let i = parseInt(tmpLength); i < limit; i=i+suma) { 
     let x = Math.floor(i / 10);
     let y = i % 10;
-    if (auxBoard[x][y] === "x") {
+    if (["C", "B", "D", "S", "P"].includes(auxBoard[x][y])) {
       return;
     }
     //hover effect
@@ -30,15 +32,15 @@ export function shipLeave() {
   let tmpLength = this.getAttribute("data-number");
   let auxBoard = gameboard1.getBoard();
   let suma = 1;
-  let limit = parseInt(tmpLength) + currentShip;
+  let limit = parseInt(tmpLength) + allShips[shipsPlaced].getLenght();
   if(!rotateSwitch){
     suma = 10;
-    limit = parseInt(tmpLength)+(currentShip*suma);
+    limit = parseInt(tmpLength)+(allShips[shipsPlaced].getLenght()*suma);
   }
   for (let i = parseInt(tmpLength); i < limit; i=i+suma) { 
     let x = Math.floor(i / 10);
     let y = i % 10;
-    if (auxBoard[x][y] === "x") {
+    if (["C", "B", "D", "S", "P"].includes(auxBoard[x][y])) {
       return;
     }
     let auxSquare = document.querySelector(`[data-number="${i}"]`);

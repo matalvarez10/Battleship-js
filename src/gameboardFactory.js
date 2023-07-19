@@ -1,7 +1,7 @@
 import { shipHover, shipLeave } from "./helperFunctions";
 import { rotateSwitch } from ".";
 import { allShips } from ".";
-export const currentShip = 5;
+/* export const allShips[shipsPlaced].getLenght() = 5; */
 export let shipsPlaced = 0;
 
 
@@ -28,16 +28,15 @@ export const gameboard = (nombre) => {
     let i = Math.floor(index / 10);
     let j = index % 10;
     let suma = 1;
-    let limit = j + currentShip;
+    let limit = j + allShips[shipsPlaced].getLenght();
     if(!rotateSwitch){
       suma = 10;
-      limit = index + (currentShip*suma);
+      limit = index + (allShips[shipsPlaced].getLenght()*suma);
     }
     if (checkBoard(index) === true) {
-      shipsPlaced++;
       for (let y = rotateSwitch ? j : index ; y < limit ; y=y + suma) {
         if(rotateSwitch){
-          mainBoard[i][y] = "x";
+          mainBoard[i][y] = allShips[shipsPlaced].getId();
           if (i == 0) {
             let auxSquare = document.querySelector(`[data-number="${y}"]`);
             auxSquare.style.backgroundColor = "black";
@@ -47,7 +46,7 @@ export const gameboard = (nombre) => {
           }
         }
         else{
-          mainBoard[Math.floor(y / 10)][j] = "x";
+          mainBoard[Math.floor(y / 10)][j] = allShips[shipsPlaced].getId();
           if (Math.floor(y / 10) == 0) {
             let auxSquare = document.querySelector(`[data-number="${j}"]`);
             auxSquare.style.backgroundColor = "black";
@@ -59,8 +58,18 @@ export const gameboard = (nombre) => {
         }
 
       }
+      if(shipsPlaced<4){
+        shipsPlaced++;
+      }
+      else{
+        let allGrids = document.querySelectorAll(".grid-square");
+        allGrids.forEach((element)=>{
+          element.removeEventListener("click", writeBoard);
+          element.removeEventListener("mouseover", shipHover);
+          element.removeEventListener("mouseout", shipLeave);
+        })
+      }
     }
-    console.log("shipsCounter",shipsPlaced);
     console.log(mainBoard);
   }
   function checkBoard(index) {
@@ -71,18 +80,18 @@ export const gameboard = (nombre) => {
     }
     for (let y = i - 1; y <= i + 1; y++) {
       if (y < 0 || y > 9) continue;
-      for (let k = j - 1; k < j + currentShip + 1; k++) {
-        if (j + currentShip > 10) {
+      for (let k = j - 1; k < j + allShips[shipsPlaced].getLenght() + 1; k++) {
+        if (j + allShips[shipsPlaced].getLenght() > 10) {
           return false;
         }
         if (k < 0 || k > 9) continue;
         if(rotateSwitch){
-          if (mainBoard[y][k] == "x") {
+          if (["C", "B", "D", "S", "P"].includes(mainBoard[y][k])) {
             return false;
           }
         }
         else{
-          if (mainBoard[k][y] == "x") {
+          if (["C", "B", "D", "S", "P"].includes(mainBoard[k][y])) {
             return false;
           }
         }
