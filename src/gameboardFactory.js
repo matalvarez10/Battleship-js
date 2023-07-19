@@ -31,7 +31,7 @@ export const gameboard = (nombre) => {
       suma = 10;
       limit = index + (currentShip*suma);
     }
-/*     if (checkBoard(index) === true) { */
+    if (checkBoard(index) === true) {
       for (let y = rotateSwitch ? j : index ; y < limit ; y=y + suma) {
         if(rotateSwitch){
           mainBoard[i][y] = "x";
@@ -56,22 +56,35 @@ export const gameboard = (nombre) => {
         }
 
       }
-/*     } */
+    }
     console.log(mainBoard);
   }
   function checkBoard(index) {
     let i = Math.floor(index / 10);
     let j = index % 10;
+    if(!rotateSwitch){
+      [j, i] = [i, j];
+    }
     for (let y = i - 1; y <= i + 1; y++) {
       if (y < 0 || y > 9) continue;
+      console.log("_____________________");
       for (let k = j - 1; k < j + currentShip + 1; k++) {
+        console.log(y,k)
         if (j + currentShip > 10) {
           return false;
         }
         if (k < 0 || k > 9) continue;
-        if (mainBoard[y][k] == "x") {
-          return false;
+        if(rotateSwitch){
+          if (mainBoard[y][k] == "x") {
+            return false;
+          }
         }
+        else{
+          if (mainBoard[k][y] == "x") {
+            return false;
+          }
+        }
+
       }
     }
     return true;
