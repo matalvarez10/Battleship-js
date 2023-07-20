@@ -7,9 +7,11 @@ import "@fortawesome/fontawesome-free/js/brands";
 
 import { gameboard } from "./gameboardFactory";
 import {ship} from "./shipFactory"
+import { player } from "./playerFactory";
 
 const rotateButton = document.getElementById("rotate-btn");
 export let rotateSwitch = true;
+export let currentPlayer = 0;
 
 //helper function
 function getRandomInt(max) {
@@ -26,7 +28,7 @@ function getRandomInt(max) {
 
 // Creating ships and inserting them in an array
 
-const allShipsPlayer =[
+export const allShipsPlayer =[
     ship("Carrier",5,"C"),
     ship("Battleship",4,"B"),
     ship("Destroyer",3,"D"),
@@ -34,16 +36,25 @@ const allShipsPlayer =[
     ship("Patrol Boat",2,"P")
 ];
 
-const allShipsCPU =[
+export const allShipsCPU =[
     ship("Carrier",5,"C"),
     ship("Battleship",4,"B"),
     ship("Destroyer",3,"D"),
     ship("Submarine",3,"S"),
     ship("Patrol Boat",2,"P")
 ];
+// INITIAL PLAYER => HUMAN PLAYER
 
-const gameboardPlayer = gameboard('Matias',allShipsPlayer,0);
-const gameboardCPU = gameboard('CPU',allShipsCPU,0);
+// creating players
+export const players = [
+    player("player1"),
+    player("CPU")
+];
+
+
+//creating boards
+const gameboardPlayer = gameboard(players[0].getName(),allShipsPlayer,0);
+const gameboardCPU = gameboard(players[1].getName(),allShipsCPU,0);
 
 
 const allCPU = document.querySelectorAll(".CPU");

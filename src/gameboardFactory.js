@@ -1,4 +1,6 @@
 import { rotateSwitch } from ".";
+import { currentPlayer } from ".";
+import { players } from ".";
 
 export const gameboard = (nombre,allShips,shipsPlaced) => {  
   let mainBoard = [];
@@ -76,6 +78,38 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
           element.removeEventListener("click", writeBoard);
           element.removeEventListener("mouseover", shipHover);
           element.removeEventListener("mouseout", shipLeave);
+          element.addEventListener("click",(e)=>{
+            /* if(currentplayer.name !==gameboard.name) 
+            PLAYERS[currentPlayer].clickHit(COORDINATES,gameboard reference)
+            )  */
+            if(players[currentPlayer].getName() !== nombre){
+              players[currentPlayer].clickHit(e.target,mainBoard);
+            }
+            else{
+              console.log("movimiento no valido");
+            }
+            /*
+            // clickHit
+            if(validMove){
+              writeonboard("char que represente casilla ocupada");
+              changecolor(coordinates);
+              changeCurrentPlayer=> either 0 for player and 1 for cpu, push them to an array so i can access the objects
+              in order to call the click hit function
+            }
+            else{
+              do nothing.
+            }
+            //validmove
+            validmove(gameboard,coords){
+              if gameboard[coords] === ship
+              write()
+            }
+
+            ///
+            CORDS XX == HIT
+            CORDS MM == MISSED
+            */
+          })
         });
       }
     }
