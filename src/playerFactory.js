@@ -1,5 +1,6 @@
 import { currentPlayer } from ".";
 import { getRandomNumberInRangeWithExclusions } from "./helperFunctions";
+import { players } from ".";
 let valuesToExclude = [];
 
 
@@ -28,12 +29,22 @@ export const player = (nombre)=>{
                 gameboardRef[x][y] = "MM";
                 gridReference.style.backgroundColor = "gray";
             }
-            currentPlayer = 1 - currentPlayer;
             if(nombre != "CPU"){
                 const allCPU = document.querySelectorAll(".player1");
                 let randomNum = getRandomNumberInRangeWithExclusions(valuesToExclude);
-                allCPU[randomNum].click();
+                
+                setTimeout(() => {
+                    allCPU[randomNum].click();
+                    console.log("Retrasado por 1 segundo.");
+                  }, "1000");
             }
+            const currentTurn = document.getElementById('current-turn');
+            currentTurn.innerText = `current turn: ${players[1-currentPlayer].getName()}`;
+            currentPlayer = 1 - currentPlayer;
+
+
+
+            
         };
     }
     const validMove = (cordX,cordY,gameboardRef) =>{
