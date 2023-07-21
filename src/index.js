@@ -14,7 +14,7 @@ export let rotateSwitch = true;
 export let currentPlayer = 0;
 
 //helper function
-function getRandomInt(max) {
+export function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 
