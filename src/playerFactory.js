@@ -31,11 +31,9 @@ export const player = (nombre)=>{
             }
             if(nombre != "CPU"){
                 const allCPU = document.querySelectorAll(".player1");
-                let randomNum = getRandomNumberInRangeWithExclusions(valuesToExclude);
-                
+                let randomNum = getRandomNumberInRangeWithExclusions(valuesToExclude);  
                 setTimeout(() => {
                     allCPU[randomNum].click();
-                    console.log("Retrasado por 1 segundo.");
                   }, "1000");
             }
             const currentTurn = document.getElementById('current-turn');

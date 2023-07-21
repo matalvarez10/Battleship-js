@@ -24,6 +24,10 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
       let tmpSquare = document.createElement("div");
       tmpSquare.classList.add("grid-square");
       tmpSquare.classList.add(nombre);
+      if(nombre === "CPU"){
+        tmpSquare.style.backgroundColor = "#2B0059 ";
+        tmpSquare.style.borderColor = "#6E3AFF";
+      }
       tmpSquare.setAttribute("data-number", counter);
       tmpSquare.addEventListener("mouseover", shipHover);
       tmpSquare.addEventListener("mouseout", shipLeave);
@@ -46,7 +50,7 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
     }
     if (checkBoard(index) === true) {
       if(shipsPlaced<4){
-        displayBoatName.innerText= allShips[shipsPlaced + 1].getName();
+        displayBoatName.innerText= `Place your ${allShips[shipsPlaced + 1].getName()}!`;
       }
       
       for (let y = rotateSwitch ? j : index; y < limit; y = y + suma) {
@@ -54,21 +58,21 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
           mainBoard[i][y] = allShips[shipsPlaced].getId();
           if (i == 0) {
             let auxSquare = document.querySelector(`[data-number="${y}"].${nombre}`);;
-            auxSquare.style.backgroundColor = "black";
+            auxSquare.style.backgroundColor = "#04d9ff";
           } else {
             let auxSquare = document.querySelector(`[data-number="${i}${y}"].${nombre}`);
-            auxSquare.style.backgroundColor = "black";
+            auxSquare.style.backgroundColor = "#04d9ff";
           }
         } else {
           mainBoard[Math.floor(y / 10)][j] = allShips[shipsPlaced].getId();
           if (Math.floor(y / 10) == 0) {
             let auxSquare = document.querySelector(`[data-number="${j}"].${nombre}`);
-            auxSquare.style.backgroundColor = "black";
+            auxSquare.style.backgroundColor = "#04d9ff";
           } else {
             let auxSquare = document.querySelector(
               `[data-number="${Math.floor(y / 10)}${j}"].${nombre}`
             );
-            auxSquare.style.backgroundColor = "black";
+            auxSquare.style.backgroundColor = "#04d9ff";
           }
         }
       }
@@ -78,10 +82,15 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
         if(nombre !== "CPU"){
           const renderGrid = document.getElementById(`CPU`);
           renderGrid.removeAttribute('id');
+          const startupInfo = document.getElementById("startup-info");
+          const wrapperContainer = document.getElementById("wrapper");
+          startupInfo.style.maxHeight = 0;
+          wrapperContainer.style.maxHeight = '1000px';
+          console.log("olaaa");
+          
         }
-
         allGrids.forEach((element) => {
-          displayBoatName.innerText = "Carrier";
+          displayBoatName.innerText = "Display your Carrier";
           element.removeEventListener("click", writeBoard);
           element.removeEventListener("mouseover", shipHover);
           element.removeEventListener("mouseout", shipLeave);
@@ -140,7 +149,7 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
       }
       //hover effect
       let auxSquare = document.querySelector(`[data-number="${i}"].${nombre}`);
-      auxSquare.style.backgroundColor = "lime";
+      auxSquare.style.backgroundColor = "#00FF00";
       if ((i % 10 == 9 && rotateSwitch) || (i >= 90 && !rotateSwitch)) {
         return;
       }
@@ -162,7 +171,7 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
         return;
       }
       let auxSquare = document.querySelector(`[data-number="${i}"].${nombre}`);
-      auxSquare.style.backgroundColor = "white";
+      auxSquare.style.backgroundColor = "#000c20";
       if ((i % 10 == 9 && rotateSwitch) || (i >= 90 && !rotateSwitch)) {
         return;
       }

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap');
+
 *,
 ::before,
 ::after {
@@ -6,41 +9,107 @@
   box-sizing: border-box;
 }
 
-body{
+body {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #000c20;
+  font-family: 'Roboto', sans-serif;
+  color: #daf4f9;
+  font-family: 'Tektur', sans-serif;
+}
+#startup-info{
     display: flex;
-    width: 100vw;
-    height: 100vh;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
-
-.game-board{
-    width: 502px;
-    height: 500px;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    z-index: 100;
-}
-
-.grid-square{
-    box-sizing: border-box; 
-    border: 1px solid gray;
-    width: calc(500px/10);
-    height: calc(500px/10);
-}
-
-#CPU{
-    display: none;
-}
-
-#game-container{
-    display: flex;
-    flex-direction: row;
-    gap: 100px;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.1s ease-out;
+}
+
+#boat-name{
+    font-size: 2rem;
+}
+
+#rotate-btn{
+    font-family: 'Tektur', sans-serif;
+    font-size: 24px;
+    background-color: #13244b;
+    border: 1px solid #daf4f9;
+    width: 170px;
+    height: 40px;
+    color: #daf4f9;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+#rotate-btn:hover{
+    transform: scale(1.1);
+}
+
+
+header{
+    background-color: #13244b;
+    color: #daf4f9;
+    height: 70px;
+    font-size: 54px;
+    font-family: 'Tektur', cursive;
+    padding-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.game-board {
+  width: 522px;
+  height: 520px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  z-index: 100;
+}
+
+.grid-square {
+  box-sizing: border-box;
+  border: 1px solid #13244b;
+  width: calc(500px / 10);
+  height: calc(500px / 10);
+  margin: 1px;
+  cursor: crosshair;
+  border-radius: 2px;
+}
+
+#CPU {
+  display: none;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+#current-turn{
+    text-align: center;
+    font-size: 40px;
+    border: 1px solid #daf4f9;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+#wrapper{
+    max-height: 0px;
+    overflow: hidden;
+    width: auto;
+    width: 400px;
+    transition: max-height 0.1s ease-out;
+    align-self: center;
 }
