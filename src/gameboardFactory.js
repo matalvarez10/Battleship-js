@@ -87,7 +87,7 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
           element.removeEventListener("mouseout", shipLeave);
           element.addEventListener("click",(e)=>{
             if(players[currentPlayer].getName() !== nombre){
-              players[currentPlayer].clickHit(e.target,mainBoard);
+              players[currentPlayer].clickHit(e.target,mainBoard,allShips,nombre);
             }
             else{
               console.log("movimiento no valido");
