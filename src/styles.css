@@ -83,6 +83,22 @@ header{
   cursor: crosshair;
   border-radius: 2px;
 }
+.grid-square-cords {
+  box-sizing: border-box;
+  width: calc(500px / 10);
+  height: calc(500px / 10);
+  margin: 1px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.cords-row{
+    display: flex;
+    flex-direction: row;
+}
 
 #CPU {
   display: none;
@@ -112,4 +128,9 @@ header{
     width: 400px;
     transition: max-height 0.1s ease-out;
     align-self: center;
+}
+
+.letter-wrapper{
+    display: flex;
+    flex-direction: row;
 }

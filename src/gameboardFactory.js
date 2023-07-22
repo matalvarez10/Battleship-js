@@ -6,17 +6,39 @@ import { getRandomInt } from ".";
 
 export const gameboard = (nombre,allShips,shipsPlaced) => {  
   let mainBoard = [];
+  //main grid square container
   let containerElement = document.getElementById("game-container");
+  /// for the cords
+  let containerWrapper = document.createElement('div');
+  let numberRow = document.createElement('div');
+  numberRow.classList.add('cords-row');
+  let lettersRow = document.createElement('div');
+  lettersRow.classList.add('cords-row');
+  // the board to click
   let displayBoard = document.createElement("div");
+  // boat selector
   let displayBoatName = document.querySelector('#boat-name');
   displayBoard.classList.add("game-board");
-  displayBoard.setAttribute('id',`${nombre}`);
+  containerWrapper.setAttribute('id',`${nombre}`);
+  //wrapper to enter letter row and the gameboard
+  let letterGameboardWrapper = document.createElement('div');
+  letterGameboardWrapper.classList.add("letter-wrapper");
   let counter = 0;
 
-/*   // random play if cpu
-  if(currentPlayer == 1){
-    console.log("cpu turn");
-  } */
+  for (let index = 0; index <= 9; index++) {
+    const cordsElement = document.createElement('div');
+    cordsElement.classList.add("grid-square-cords")
+
+    cordsElement.innerText = index;
+    numberRow.style.paddingLeft = "calc(502px / 10)";
+    numberRow.append(cordsElement);
+    const lettersElement = document.createElement('div');
+    lettersElement.classList.add("grid-square-cords");
+    lettersElement.innerText =(index+10).toString(36).toUpperCase();
+    lettersRow.style.flexDirection = "column";
+    lettersRow.append(lettersElement);
+  }
+  containerWrapper.append(numberRow);
   for (let i = 0; i < 10; i++) {
     mainBoard[i] = [];
     for (let j = 0; j < 10; j++) {
@@ -36,7 +58,10 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
       counter++;
     }
   }
-  containerElement.append(displayBoard);
+  letterGameboardWrapper.append(lettersRow);
+  letterGameboardWrapper.append(displayBoard);
+  containerWrapper.append(letterGameboardWrapper);
+  containerElement.append(containerWrapper);
 
   function writeBoard() {
     let index = parseInt(this.getAttribute("data-number"));
@@ -86,7 +111,6 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
           const wrapperContainer = document.getElementById("wrapper");
           startupInfo.style.maxHeight = 0;
           wrapperContainer.style.maxHeight = '1000px';
-          console.log("olaaa");
           
         }
         allGrids.forEach((element) => {

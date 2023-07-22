@@ -30,14 +30,14 @@ export const player = (nombre)=>{
                 gridReference.style.backgroundColor = "gray";
             }
             if(nombre != "CPU"){
-                const allCPU = document.querySelectorAll(".player1");
+                const allCPU = document.querySelectorAll(`.${nombre}`);
                 let randomNum = getRandomNumberInRangeWithExclusions(valuesToExclude);  
                 setTimeout(() => {
                     allCPU[randomNum].click();
                   }, "1000");
             }
             const currentTurn = document.getElementById('current-turn');
-            currentTurn.innerText = `current turn: ${players[1-currentPlayer].getName()}`;
+            currentTurn.innerText = `${players[1-currentPlayer].getName()} Turn`;
             currentPlayer = 1 - currentPlayer;
 
 

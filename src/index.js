@@ -47,7 +47,7 @@ export const allShipsCPU =[
 
 // creating players
 export const players = [
-    player("player1"),
+    player("Player"),
     player("CPU")
 ];
 
