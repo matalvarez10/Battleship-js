@@ -1,14 +1,20 @@
 import { rotateSwitch } from ".";
 import { currentPlayer } from ".";
 import { players } from ".";
-let isClickDisabled = false;
+import { separator } from ".";
 
 export const gameboard = (nombre,allShips,shipsPlaced) => {  
   let mainBoard = [];
+  //board titles
+  let boardTitle = document.createElement('div');
+  boardTitle.classList.add("board-title");
+  boardTitle.innerText = `${nombre} Board`;
   //main grid square container
   let containerElement = document.getElementById("game-container");
-  /// for the cords
+  //main container
   let containerWrapper = document.createElement('div');
+  containerWrapper.classList.add("board-container");
+   /// for the cords
   let numberRow = document.createElement('div');
   numberRow.classList.add('cords-row');
   let lettersRow = document.createElement('div');
@@ -29,7 +35,7 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
     cordsElement.classList.add("grid-square-cords")
 
     cordsElement.innerText = index;
-    numberRow.style.paddingLeft = "calc(502px / 10)";
+    numberRow.style.paddingLeft = "calc(530px / 10)";
     numberRow.append(cordsElement);
     const lettersElement = document.createElement('div');
     lettersElement.classList.add("grid-square-cords");
@@ -37,6 +43,7 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
     lettersRow.style.flexDirection = "column";
     lettersRow.append(lettersElement);
   }
+  containerWrapper.append(boardTitle);
   containerWrapper.append(numberRow);
   for (let i = 0; i < 10; i++) {
     mainBoard[i] = [];
@@ -82,21 +89,21 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
           mainBoard[i][y] = allShips[shipsPlaced].getId();
           if (i == 0) {
             let auxSquare = document.querySelector(`[data-number="${y}"].${nombre}`);;
-            auxSquare.style.backgroundColor = "#04d9ff";
+            auxSquare.style.backgroundColor = "#ff0080";
           } else {
             let auxSquare = document.querySelector(`[data-number="${i}${y}"].${nombre}`);
-            auxSquare.style.backgroundColor = "#04d9ff";
+            auxSquare.style.backgroundColor = "#ff0080";
           }
         } else {
           mainBoard[Math.floor(y / 10)][j] = allShips[shipsPlaced].getId();
           if (Math.floor(y / 10) == 0) {
             let auxSquare = document.querySelector(`[data-number="${j}"].${nombre}`);
-            auxSquare.style.backgroundColor = "#04d9ff";
+            auxSquare.style.backgroundColor = "#ff0080";
           } else {
             let auxSquare = document.querySelector(
               `[data-number="${Math.floor(y / 10)}${j}"].${nombre}`
             );
-            auxSquare.style.backgroundColor = "#04d9ff";
+            auxSquare.style.backgroundColor = "#ff0080";
           }
         }
       }
@@ -110,6 +117,7 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
           const wrapperContainer = document.getElementById("wrapper");
           startupInfo.style.maxHeight = 0;
           wrapperContainer.style.maxHeight = '1000px';
+          separator.style.display = "block"
           
         }
         allGrids.forEach((element) => {
@@ -118,6 +126,8 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
           element.removeEventListener("mouseover", shipHover);
           element.removeEventListener("mouseout", shipLeave);
           element.addEventListener("click",gameplayHandler)
+          element.addEventListener("mouseover",hoverIn)
+          element.addEventListener("mouseout",hoverOut)
         });
       }
     }
@@ -131,7 +141,13 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
       console.log("movimiento no valido");
     }
   }
-  //////////////////////////
+  function hoverIn(){
+    this.style.opacity = 0.3  ;
+  }
+  function hoverOut(){
+    this.style.opacity = 1;
+  }
+
   function checkBoard(index) {
     let i = Math.floor(index / 10);
     let j = index % 10;

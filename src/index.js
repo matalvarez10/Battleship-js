@@ -18,7 +18,12 @@ export let currentPlayer = 0;
 export function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
+// separator element
+export const separator = document.createElement('div');
+separator.classList.add("vertical-separator");
+//game container
 
+const gameContainer = document.getElementById('game-container');
 
 // Creating ships and inserting them in an array
 
@@ -48,6 +53,7 @@ export const players = [
 
 //creating boards
 const gameboardPlayer = gameboard(players[0].getName(),allShipsPlayer,0);
+gameContainer.append(separator);
 const gameboardCPU = gameboard(players[1].getName(),allShipsCPU,0);
 
 

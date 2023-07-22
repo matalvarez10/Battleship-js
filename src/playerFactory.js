@@ -28,10 +28,12 @@ export const player = (nombre)=>{
                     winnerText.innerText = `THE WINNER IS ${nombre}`;
                 }
                 gameboardRef[x][y] = "XX";
-                gridReference.style.backgroundColor = "red";
+                /* gridReference.style.backgroundColor = "red"; */
+                gridReference.innerText = "💥";
             }else{
                 gameboardRef[x][y] = "MM";
-                gridReference.style.backgroundColor = "gray";
+                /* gridReference.style.backgroundColor = "gray"; */
+                gridReference.innerText = "❌"
             }
             if(nombre != "CPU"){
                 const playerGrid = document.getElementById(nombre);
@@ -41,7 +43,7 @@ export const player = (nombre)=>{
                 setTimeout(() => {
                     playerGrid.style.pointerEvents = "auto";
                     allCPU[randomNum].click();       
-                  }, "100");
+                  }, "1000");
             }     
             const currentTurn = document.getElementById('current-turn');
             currentTurn.innerText = `${players[1-currentPlayer].getName()} Turn`;

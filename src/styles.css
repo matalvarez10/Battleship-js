@@ -62,6 +62,7 @@ header{
     padding-left: 50px;
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .game-board {
@@ -82,6 +83,10 @@ header{
   margin: 1px;
   cursor: crosshair;
   border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
 }
 .grid-square-cords {
   box-sizing: border-box;
@@ -109,7 +114,7 @@ header{
   flex-direction: row;
   gap: 100px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
 #current-turn{
@@ -168,4 +173,28 @@ header{
   #winner{
     font-size: 30px;
     text-transform: uppercase;
+  }
+
+  .board-title{
+    align-self: center;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    background-color: #4b0866;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #daf4f9;
+  }
+  .board-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .vertical-separator{
+    background-color: #daf4f9;
+    height: 550px;
+    width: 1px;
+    display: none;
+    
   }
