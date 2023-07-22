@@ -10,6 +10,7 @@ import {ship} from "./shipFactory"
 import { player } from "./playerFactory";
 
 const rotateButton = document.getElementById("rotate-btn");
+const playAgainBtn = document.getElementById("play-again");
 export let rotateSwitch = true;
 export let currentPlayer = 0;
 
@@ -18,13 +19,6 @@ export function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 
-  /* 
-1* 5 carrier C
-1* 4 battleship B 
-1*3 destroyer D
-1*3 submarine 3 S
-1*2 patrol boat P
-*/
 
 // Creating ships and inserting them in an array
 
@@ -73,6 +67,10 @@ rotateSwitch = true;
 rotateButton.addEventListener('click',()=>{
     rotateSwitch = !rotateSwitch;
 
+})
+
+playAgainBtn.addEventListener('click',()=>{
+    location.reload();
 })
 
 

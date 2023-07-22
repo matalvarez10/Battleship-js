@@ -21,8 +21,11 @@ export const player = (nombre)=>{
                 shipHit[0].hit();
                 if(checkGameOver(allShips)){
                     const winnerText = document.getElementById('winner');
-                    winnerText.innerText = `GANADOR ES ${nombre}`;
-                    /* location.reload(); */
+                    const modalElement = document.getElementById('modal');
+                    const backdropElement = document.querySelector('.backdrop');
+                    modalElement.style.display = "flex";
+                    backdropElement.style.display = "block";
+                    winnerText.innerText = `THE WINNER IS ${nombre}`;
                 }
                 gameboardRef[x][y] = "XX";
                 gridReference.style.backgroundColor = "red";
@@ -38,7 +41,7 @@ export const player = (nombre)=>{
                 setTimeout(() => {
                     playerGrid.style.pointerEvents = "auto";
                     allCPU[randomNum].click();       
-                  }, "1000");
+                  }, "100");
             }     
             const currentTurn = document.getElementById('current-turn');
             currentTurn.innerText = `${players[1-currentPlayer].getName()} Turn`;
