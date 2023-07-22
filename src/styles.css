@@ -46,10 +46,13 @@ body {
   cursor: pointer;
   border-radius: 5px;
   transition: 0.2s;
+  margin-top: 20px;
 }
 
 .app-btn:hover {
   transform: scale(1.1);
+  color: #13244b;
+  background-color: #daf4f9;
 }
 
 header {
@@ -61,7 +64,6 @@ header {
   padding-left: 50px;
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .game-board {
