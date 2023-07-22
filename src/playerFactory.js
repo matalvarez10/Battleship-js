@@ -11,6 +11,7 @@ export const player = (nombre)=>{
         const x = Math.floor(coordinates / 10);
         const y = coordinates % 10;
         if(validMove(x,y,gameboardRef) === true){
+
             if(nombre == "CPU"){
                 valuesToExclude.push((x*10) + y);
                 
@@ -21,7 +22,7 @@ export const player = (nombre)=>{
                 if(checkGameOver(allShips)){
                     const winnerText = document.getElementById('winner');
                     winnerText.innerText = `GANADOR ES ${nombre}`;
-                    location.reload();
+                    /* location.reload(); */
                 }
                 gameboardRef[x][y] = "XX";
                 gridReference.style.backgroundColor = "red";
@@ -30,19 +31,18 @@ export const player = (nombre)=>{
                 gridReference.style.backgroundColor = "gray";
             }
             if(nombre != "CPU"){
+                const playerGrid = document.getElementById(nombre);
                 const allCPU = document.querySelectorAll(`.${nombre}`);
                 let randomNum = getRandomNumberInRangeWithExclusions(valuesToExclude);  
+                playerGrid.style.pointerEvents = "none";
                 setTimeout(() => {
-                    allCPU[randomNum].click();
+                    playerGrid.style.pointerEvents = "auto";
+                    allCPU[randomNum].click();       
                   }, "1000");
-            }
+            }     
             const currentTurn = document.getElementById('current-turn');
             currentTurn.innerText = `${players[1-currentPlayer].getName()} Turn`;
             currentPlayer = 1 - currentPlayer;
-
-
-
-            
         };
     }
     const validMove = (cordX,cordY,gameboardRef) =>{

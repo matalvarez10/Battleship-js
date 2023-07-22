@@ -1,8 +1,7 @@
 import { rotateSwitch } from ".";
 import { currentPlayer } from ".";
 import { players } from ".";
-import { getRandomInt } from ".";
-
+let isClickDisabled = false;
 
 export const gameboard = (nombre,allShips,shipsPlaced) => {  
   let mainBoard = [];
@@ -118,18 +117,21 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
           element.removeEventListener("click", writeBoard);
           element.removeEventListener("mouseover", shipHover);
           element.removeEventListener("mouseout", shipLeave);
-          element.addEventListener("click",(e)=>{
-            if(players[currentPlayer].getName() !== nombre){
-              players[currentPlayer].clickHit(e.target,mainBoard,allShips,nombre);
-            }
-            else{
-              console.log("movimiento no valido");
-            }
-          })
+          element.addEventListener("click",gameplayHandler)
         });
       }
     }
   }
+  //// para controlar el gameflow
+  function gameplayHandler(){
+    if(players[currentPlayer].getName() !== nombre){
+      players[currentPlayer].clickHit(this,mainBoard,allShips,nombre);
+    }
+    else{
+      console.log("movimiento no valido");
+    }
+  }
+  //////////////////////////
   function checkBoard(index) {
     let i = Math.floor(index / 10);
     let j = index % 10;
