@@ -3,43 +3,43 @@ import { currentPlayer } from ".";
 import { players } from ".";
 import { separator } from ".";
 
-export const gameboard = (nombre,allShips,shipsPlaced) => {  
+export const gameboard = (nombre, allShips, shipsPlaced) => {
   let mainBoard = [];
   //board titles
-  let boardTitle = document.createElement('div');
+  let boardTitle = document.createElement("div");
   boardTitle.classList.add("board-title");
   boardTitle.innerText = `${nombre} Board`;
   //main grid square container
   let containerElement = document.getElementById("game-container");
   //main container
-  let containerWrapper = document.createElement('div');
+  let containerWrapper = document.createElement("div");
   containerWrapper.classList.add("board-container");
-   /// for the cords
-  let numberRow = document.createElement('div');
-  numberRow.classList.add('cords-row');
-  let lettersRow = document.createElement('div');
-  lettersRow.classList.add('cords-row');
+  /// for the cords
+  let numberRow = document.createElement("div");
+  numberRow.classList.add("cords-row");
+  let lettersRow = document.createElement("div");
+  lettersRow.classList.add("cords-row");
   // the board to click
   let displayBoard = document.createElement("div");
   // boat selector
-  let displayBoatName = document.querySelector('#boat-name');
+  let displayBoatName = document.querySelector("#boat-name");
   displayBoard.classList.add("game-board");
-  containerWrapper.setAttribute('id',`${nombre}`);
+  containerWrapper.setAttribute("id", `${nombre}`);
   //wrapper to enter letter row and the gameboard
-  let letterGameboardWrapper = document.createElement('div');
+  let letterGameboardWrapper = document.createElement("div");
   letterGameboardWrapper.classList.add("letter-wrapper");
   let counter = 0;
 
   for (let index = 0; index <= 9; index++) {
-    const cordsElement = document.createElement('div');
-    cordsElement.classList.add("grid-square-cords")
+    const cordsElement = document.createElement("div");
+    cordsElement.classList.add("grid-square-cords");
 
     cordsElement.innerText = index;
     numberRow.style.paddingLeft = "calc(530px / 10)";
     numberRow.append(cordsElement);
-    const lettersElement = document.createElement('div');
+    const lettersElement = document.createElement("div");
     lettersElement.classList.add("grid-square-cords");
-    lettersElement.innerText =(index+10).toString(36).toUpperCase();
+    lettersElement.innerText = (index + 10).toString(36).toUpperCase();
     lettersRow.style.flexDirection = "column";
     lettersRow.append(lettersElement);
   }
@@ -52,7 +52,7 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
       let tmpSquare = document.createElement("div");
       tmpSquare.classList.add("grid-square");
       tmpSquare.classList.add(nombre);
-      if(nombre === "CPU"){
+      if (nombre === "CPU") {
         tmpSquare.style.backgroundColor = "#2B0059 ";
         tmpSquare.style.borderColor = "#6E3AFF";
       }
@@ -80,68 +80,83 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
       limit = index + allShips[shipsPlaced].getLenght() * suma;
     }
     if (checkBoard(index) === true) {
-      if(shipsPlaced<4){
-        displayBoatName.innerText= `Place your ${allShips[shipsPlaced + 1].getName()}!`;
+      if (shipsPlaced < 4) {
+        displayBoatName.innerText = `Place your ${allShips[
+          shipsPlaced + 1
+        ].getName()}!`;
       }
-      
+
       for (let y = rotateSwitch ? j : index; y < limit; y = y + suma) {
         if (rotateSwitch) {
           mainBoard[i][y] = allShips[shipsPlaced].getId();
           if (i == 0) {
-            let auxSquare = document.querySelector(`[data-number="${y}"].${nombre}`);
-            nombre == "CPU" ? auxSquare.style.backgroundColor = "#2B0059": auxSquare.style.backgroundColor = "#ff0080";
+            let auxSquare = document.querySelector(
+              `[data-number="${y}"].${nombre}`
+            );
+            nombre == "CPU"
+              ? (auxSquare.style.backgroundColor = "#2B0059")
+              : (auxSquare.style.backgroundColor = "#ff0080");
           } else {
-            let auxSquare = document.querySelector(`[data-number="${i}${y}"].${nombre}`);
-            nombre == "CPU" ? auxSquare.style.backgroundColor = "#2B0059": auxSquare.style.backgroundColor = "#ff0080";;
+            let auxSquare = document.querySelector(
+              `[data-number="${i}${y}"].${nombre}`
+            );
+            nombre == "CPU"
+              ? (auxSquare.style.backgroundColor = "#2B0059")
+              : (auxSquare.style.backgroundColor = "#ff0080");
           }
         } else {
           mainBoard[Math.floor(y / 10)][j] = allShips[shipsPlaced].getId();
           if (Math.floor(y / 10) == 0) {
-            let auxSquare = document.querySelector(`[data-number="${j}"].${nombre}`);
-            nombre == "CPU" ? auxSquare.style.backgroundColor = "#2B0059": auxSquare.style.backgroundColor = "#ff0080";;
+            let auxSquare = document.querySelector(
+              `[data-number="${j}"].${nombre}`
+            );
+            nombre == "CPU"
+              ? (auxSquare.style.backgroundColor = "#2B0059")
+              : (auxSquare.style.backgroundColor = "#ff0080");
           } else {
             let auxSquare = document.querySelector(
               `[data-number="${Math.floor(y / 10)}${j}"].${nombre}`
             );
-            nombre == "CPU" ? auxSquare.style.backgroundColor = "#2B0059": auxSquare.style.backgroundColor = "#ff0080";;
+            nombre == "CPU"
+              ? (auxSquare.style.backgroundColor = "#2B0059")
+              : (auxSquare.style.backgroundColor = "#ff0080");
           }
         }
       }
       shipsPlaced++;
       if (allPieces()) {
         let allGrids = document.querySelectorAll(`.${nombre}`);
-        if(nombre !== "CPU"){
+        if (nombre !== "CPU") {
           const renderGrid = document.getElementById(`CPU`);
-          renderGrid.removeAttribute('id');
+          renderGrid.removeAttribute("id");
           const startupInfo = document.getElementById("startup-info");
           const wrapperContainer = document.getElementById("wrapper");
           startupInfo.style.maxHeight = 0;
-          wrapperContainer.style.maxHeight = '1000px';
-          separator.style.display = "block"
-          
+          wrapperContainer.style.maxHeight = "1000px";
+          separator.style.display = "block";
         }
         allGrids.forEach((element) => {
           displayBoatName.innerText = "Display your Carrier";
           element.removeEventListener("click", writeBoard);
           element.removeEventListener("mouseover", shipHover);
           element.removeEventListener("mouseout", shipLeave);
-          element.addEventListener("click",gameplayHandler)
-          element.addEventListener("mouseover",hoverIn)
-          element.addEventListener("mouseout",hoverOut)
+          element.addEventListener("click", gameplayHandler);
+          element.addEventListener("mouseover", hoverIn);
+          element.addEventListener("mouseout", hoverOut);
         });
       }
     }
   }
   //// para controlar el gameflow
-  function gameplayHandler(){
-    if(players[currentPlayer].getName() !== nombre){
-      players[currentPlayer].clickHit(this,mainBoard,allShips,nombre);
+  function gameplayHandler() {
+    if (players[currentPlayer].getName() !== nombre) {
+      players[currentPlayer].clickHit(this, mainBoard, allShips, nombre);
     }
   }
-  function hoverIn(){
-    this.style.opacity = 0.3  ;
+  function hoverIn() {
+    this.style.opacity = 0.3;
   }
-  function hoverOut(){
+  function hoverOut() {
     this.style.opacity = 1;
   }
 
@@ -217,8 +232,8 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
     }
   }
 
-  const allPieces = () => shipsPlaced >= 5 ? true : false;
+  const allPieces = () => (shipsPlaced >= 5 ? true : false);
   const getBoard = () => mainBoard;
   const getName = () => nombre;
-  return { getBoard, getName , allPieces };
+  return { getBoard, getName, allPieces };
 };
