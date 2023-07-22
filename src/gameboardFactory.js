@@ -88,22 +88,22 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
         if (rotateSwitch) {
           mainBoard[i][y] = allShips[shipsPlaced].getId();
           if (i == 0) {
-            let auxSquare = document.querySelector(`[data-number="${y}"].${nombre}`);;
-            auxSquare.style.backgroundColor = "#ff0080";
+            let auxSquare = document.querySelector(`[data-number="${y}"].${nombre}`);
+            nombre == "CPU" ? auxSquare.style.backgroundColor = "#2B0059": auxSquare.style.backgroundColor = "#ff0080";
           } else {
             let auxSquare = document.querySelector(`[data-number="${i}${y}"].${nombre}`);
-            auxSquare.style.backgroundColor = "#ff0080";
+            nombre == "CPU" ? auxSquare.style.backgroundColor = "#2B0059": auxSquare.style.backgroundColor = "#ff0080";;
           }
         } else {
           mainBoard[Math.floor(y / 10)][j] = allShips[shipsPlaced].getId();
           if (Math.floor(y / 10) == 0) {
             let auxSquare = document.querySelector(`[data-number="${j}"].${nombre}`);
-            auxSquare.style.backgroundColor = "#ff0080";
+            nombre == "CPU" ? auxSquare.style.backgroundColor = "#2B0059": auxSquare.style.backgroundColor = "#ff0080";;
           } else {
             let auxSquare = document.querySelector(
               `[data-number="${Math.floor(y / 10)}${j}"].${nombre}`
             );
-            auxSquare.style.backgroundColor = "#ff0080";
+            nombre == "CPU" ? auxSquare.style.backgroundColor = "#2B0059": auxSquare.style.backgroundColor = "#ff0080";;
           }
         }
       }
@@ -136,9 +136,6 @@ export const gameboard = (nombre,allShips,shipsPlaced) => {
   function gameplayHandler(){
     if(players[currentPlayer].getName() !== nombre){
       players[currentPlayer].clickHit(this,mainBoard,allShips,nombre);
-    }
-    else{
-      console.log("movimiento no valido");
     }
   }
   function hoverIn(){

@@ -28,11 +28,9 @@ export const player = (nombre)=>{
                     winnerText.innerText = `THE WINNER IS ${nombre}`;
                 }
                 gameboardRef[x][y] = "XX";
-                /* gridReference.style.backgroundColor = "red"; */
                 gridReference.innerText = "💥";
             }else{
                 gameboardRef[x][y] = "MM";
-                /* gridReference.style.backgroundColor = "gray"; */
                 gridReference.innerText = "❌"
             }
             if(nombre != "CPU"){
@@ -54,9 +52,6 @@ export const player = (nombre)=>{
         if(gameboardRef[cordX][cordY] !== "MM" && 
             gameboardRef[cordX][cordY] !== "XX"){
             return true
-        }
-        else{
-            console.log("invalid movement");
         }
     }
     function checkGameOver(allShips){
