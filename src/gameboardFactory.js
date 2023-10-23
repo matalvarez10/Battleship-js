@@ -17,6 +17,7 @@ export const gameboard = (nombre, allShips, shipsPlaced) => {
   /// for the cords
   let numberRow = document.createElement("div");
   numberRow.classList.add("cords-row");
+  numberRow.classList.add("num-style");
   let lettersRow = document.createElement("div");
   lettersRow.classList.add("cords-row");
   // the board to click

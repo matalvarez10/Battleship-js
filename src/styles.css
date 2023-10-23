@@ -19,6 +19,8 @@ body {
   font-family: "Roboto", sans-serif;
   color: #daf4f9;
   font-family: "Tektur", sans-serif;
+  overflow-x: hidden;
+
 }
 #startup-info {
   display: flex;
@@ -117,7 +119,22 @@ header {
   justify-content: center;
   align-items: flex-end;
 }
+@media (max-width: 1400px) {
+  #game-container {
+    gap: 40px;
+  }
+}
+@media (max-width: 1250px) {
+  #game-container {
+    flex-direction: column !important;
+    align-items: center !important;
 
+  }
+  .vertical-separator {
+    width: 550px !important;
+    height: 1px !important;
+  }
+}
 #current-turn {
   text-align: center;
   font-size: 40px;
@@ -183,6 +200,7 @@ header {
   padding: 20px;
   border-radius: 5px;
   border: 1px solid #daf4f9;
+  margin-bottom: 30px;
 }
 .board-container {
   display: flex;
@@ -196,4 +214,48 @@ header {
   height: 550px;
   width: 1px;
   display: none;
+}
+
+
+
+@media (max-width: 768px) {
+  .board-container {
+    padding: 15px;
+  }
+  .game-board {
+    width: 300px;
+    height: 298px;
+  }
+
+  .grid-square,
+  .grid-square-cords {
+    width: calc(90% / 10);
+    height: calc(90% / 10);
+    font-size: 1rem;
+  }
+
+  .cords-row{
+    padding-left: 0 !important;
+    gap: 4px;
+  }
+  .num-style{
+    gap:17px;
+  }
+  header{
+  font-size: 30px;
+  }
+  
+.board-title {
+  font-size: 0.7rem;
+  padding: 10px;
+}
+.vertical-separator {
+  display: none !important;
+}
+#game-container {
+  gap: 5px;
+}
+body{
+  gap: 1px;
+}
 }
