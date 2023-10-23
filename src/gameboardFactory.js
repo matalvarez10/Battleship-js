@@ -133,7 +133,7 @@ export const gameboard = (nombre, allShips, shipsPlaced) => {
           const startupInfo = document.getElementById("startup-info");
           const wrapperContainer = document.getElementById("wrapper");
           startupInfo.style.maxHeight = 0;
-          wrapperContainer.style.maxHeight = "1000px";
+          wrapperContainer.style.display = "block";
           separator.style.display = "block";
         }
         allGrids.forEach((element) => {

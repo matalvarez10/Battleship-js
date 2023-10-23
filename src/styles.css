@@ -20,7 +20,6 @@ body {
   color: #daf4f9;
   font-family: "Tektur", sans-serif;
   overflow-x: hidden;
-
 }
 #startup-info {
   display: flex;
@@ -48,7 +47,8 @@ body {
   cursor: pointer;
   border-radius: 5px;
   transition: 0.2s;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin: auto;
 }
 
 .app-btn:hover {
@@ -66,6 +66,7 @@ header {
   padding-left: 50px;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .game-board {
@@ -128,7 +129,6 @@ header {
   #game-container {
     flex-direction: column !important;
     align-items: center !important;
-
   }
   .vertical-separator {
     width: 550px !important;
@@ -144,11 +144,9 @@ header {
 }
 
 #wrapper {
-  max-height: 0px;
-  overflow: hidden;
-  width: auto;
+  display: none;
   width: 400px;
-  transition: max-height 0.1s ease-out;
+  /* transition: max-height 0.1s ease-out; */
   align-self: center;
 }
 
@@ -157,23 +155,43 @@ header {
   flex-direction: row;
 }
 
-/* modal */
 #modal {
   padding-top: 20px;
   border: 0.5px solid #4a4a4a;
   display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 500px;
-  gap: 30px;
   height: 200px;
   border-radius: 15px;
   position: absolute;
-  left: 40%;
-  top: 30%;
+  left: 50%;
+  top: 50%;
   z-index: 200;
   background-color: #13244b;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  #modal {
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+  }
+  .app-btn {
+    font-size: 12px;
+  }
+
+  #winner {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  #modal {
+    width: 90%;
+    max-width: 300px;
+    padding: 10px;
+  }
 }
 .backdrop {
   display: none;
@@ -190,6 +208,7 @@ header {
 #winner {
   font-size: 30px;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .board-title {
@@ -207,6 +226,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 5px;
 }
 
 .vertical-separator {
@@ -216,12 +236,7 @@ header {
   display: none;
 }
 
-
-
 @media (max-width: 768px) {
-  .board-container {
-    padding: 15px;
-  }
   .game-board {
     width: 300px;
     height: 298px;
@@ -234,28 +249,34 @@ header {
     font-size: 1rem;
   }
 
-  .cords-row{
+  .cords-row {
     padding-left: 0 !important;
     gap: 4px;
   }
-  .num-style{
-    gap:17px;
+  .num-style {
+    gap: 17px;
   }
-  header{
-  font-size: 30px;
+  header {
+    font-size: 30px;
   }
-  
-.board-title {
-  font-size: 0.7rem;
-  padding: 10px;
-}
-.vertical-separator {
-  display: none !important;
-}
-#game-container {
-  gap: 5px;
-}
-body{
-  gap: 1px;
-}
+
+  .board-title {
+    font-size: 0.7rem;
+    padding: 10px;
+  }
+  .vertical-separator {
+    display: none !important;
+  }
+  #game-container {
+    gap: 5px;
+  }
+  body {
+    gap: 1px;
+  }
+  #wrapper {
+    width: 200px;
+  }
+  #current-turn {
+    font-size: 1.2rem;
+  }
 }
