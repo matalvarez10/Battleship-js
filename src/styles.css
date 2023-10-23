@@ -226,7 +226,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
 }
 
 .vertical-separator {
