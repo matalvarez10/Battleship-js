@@ -4,7 +4,7 @@
 
 <div align="center">
    <h1>
-   <a href="https://matalvarez10.github.io//Battleship-js">Visit the Deployed Page</a>
+   <a href="https://matalvarez10.github.io/Battleship-js/">Visit the Deployed Page</a>
    </h1>
 </div>
 
