@@ -1,5 +1,14 @@
 # Battleship Game
 
+![Page Preview](battleship-preview.PNG)
+
+<div align="center">
+   <h1>
+   <a href="https://matalvarez10.github.io//Battleship-js">Visit the Deployed Page</a>
+   </h1>
+</div>
+
+
 ## Overview
 
 The Battleship Game is a classic two-player board game implemented using Vanilla JavaScript and bundled with Webpack. In this game, two players take turns to strategically position their ships on a grid and attempt to guess the locations of their opponent's ships. The objective is to sink all of the opponent's ships before they do the same to you. The game provides an engaging and interactive experience that recreates the thrill of naval warfare.
@@ -35,8 +44,8 @@ To play the Battleship Game, follow these steps:
 
 2. Navigate to the project directory.
 
-3. Install the required dependencies with `npm install` or `yarn install`.
+3. Install the required dependencies with `npm install`
 
-4. Build the project using `npm run build` or `yarn build` to bundle the code with Webpack.
+4. Build the project using `npm start` to bundle the code with Webpack.
 
-5. Open the `index.html` file in a web browser to play the game.
+5. Open the `index.html` file or http://localhost:8080/ in a web browser to play the game.
