@@ -32,7 +32,7 @@ jobs:
       run: |
         git config --global user.name "matalvarez10"
         git config --global user.email "matias.alvarezc@utem.cl"
-        echo 'your-repo-name.github.io' > dist/CNAME
+        echo 'Battleship-js.github.io' > dist/CNAME
         git add dist
         git commit -m "Deploy to GitHub Pages"
         git subtree split --prefix dist -b gh-pages
